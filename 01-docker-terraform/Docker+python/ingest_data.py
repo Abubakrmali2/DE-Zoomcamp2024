@@ -26,8 +26,8 @@ def main(params):
     df_iter=pd.read_csv(csv_name1, iterator=True, chunksize=100000)
     df=next(df_iter)
 
-    df.tpep_pickup_datetime=pd.to_datetime(df.tpep_pickup_datetime)
-    df.tpep_dropoff_datetime=pd.to_datetime(df.tpep_dropoff_datetime)
+    df.lpep_pickup_datetime=pd.to_datetime(df.lpep_pickup_datetime)
+    df.lpep_dropoff_datetime=pd.to_datetime(df.lpep_dropoff_datetime)
 
 
     df.head(n=0).to_sql(name=table_name, con=engine, if_exists='replace')
@@ -38,8 +38,8 @@ def main(params):
     while True:
         tstart=time()
         df=next(df_iter)
-        df.tpep_pickup_datetime=pd.to_datetime(df.tpep_pickup_datetime)
-        df.tpep_dropoff_datetime=pd.to_datetime(df.tpep_dropoff_datetime)
+        df.lpep_pickup_datetime=pd.to_datetime(df.lpep_pickup_datetime)
+        df.lpep_dropoff_datetime=pd.to_datetime(df.lpep_dropoff_datetime)
         df.to_sql(name=table_name, con=engine, if_exists='append')
         tend=time()
         print('Import another chunk......, it took %.3f seconds'%(tend-tstart))
