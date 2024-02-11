@@ -25,17 +25,17 @@ select count (fare_amount) FROM `mydezoomcamp-project.ny_taxi.greent_taxi_extern
 
 CREATE OR REPLACE TABLE `mydezoomcamp-project.ny_taxi.greent_taxi_partitioned`
 PARTITION BY DATE(lpep_pickup_datetime)
-CLUSTER BY PUlocationID AS (
+CLUSTER BY PU_location_ID AS (
   SELECT * FROM `mydezoomcamp-project.ny_taxi.greent_taxi_external`
 );
 
 
 
 
-SELECT distinct(PULocationID) FROM  `mydezoomcamp-project.ny_taxi.greent_taxi_partitioned`
+SELECT distinct(PU_Location_ID) FROM  `mydezoomcamp-project.ny_taxi.greent_taxi_partitioned`
 WHERE DATE(lpep_pickup_datetime) BETWEEN '06/01/2022' AND '06/30/2022';
 
-SELECT distinct(PULocationID) FROM  `mydezoomcamp-project.ny_taxi.greent_taxi`
+SELECT distinct(PU_Location_ID) FROM  `mydezoomcamp-project.ny_taxi.greent_taxi`
 WHERE DATE(lpep_pickup_datetime) BETWEEN '06/01/2022' AND '06/30/2022';
 
 
