@@ -1,0 +1,10 @@
+
+# .gitignore
+spark/
+*.csv
+
+# .gitignore
+05-batch/spark/jdk-11.0.2/lib/src.zip
+05-batch/notebook/fhv_tripdata_2019-10.csv
+05-batch/spark/jdk-11.0.2/lib/modules
+.gitattributes

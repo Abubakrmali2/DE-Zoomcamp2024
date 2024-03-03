@@ -1,0 +1,33 @@
+
+# define JAVA_HOME and add it to PATH:
+export JAVA_HOME="/workspaces/DE-Zoomcamp2024/05-batch/spark/jdk-11.0.2"
+export PATH="${JAVA_HOME}/bin:${PATH}"
+
+# define SPARK_HOME and add it to PATH:
+export SPARK_HOME="/workspaces/DE-Zoomcamp2024/05-batch/spark/spark-3.3.2-bin-hadoop3"
+export PATH="${SPARK_HOME}/bin:${PATH}"
+#spark-shell
+# added these variabul to ~/.bashrc
+# source ~/.bashrc
+#which java  which pyspart
+
+#before running juber we need define below
+export PYTHONPATH="${SPARK_HOME}/python/:$PYTHONPATH"
+export PYTHONPATH="${SPARK_HOME}/python/lib/py4j-0.10.9.5-src.zip:$PYTHONPATH"
+
+
+import pyspark
+from pyspark.sql import SparkSession
+
+spark = SparkSession.builder \
+    .master("local[*]") \
+    .appName('test') \
+    .getOrCreate()
+
+df = spark.read \
+    .option("header", "true") \
+    .csv('taxi+_zone_lookup.csv')
+
+df.show()
+
+df.write.parquet('zones')
